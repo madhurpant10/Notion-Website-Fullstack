@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ConvexClientProvider } from '@/components/providers/convex-provider'
 
+import { Toaster } from 'sonner'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -41,6 +43,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
           storageKey='notion-theme'>
+            <Toaster position='bottom-center' />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
