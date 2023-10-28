@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
 import { ChevronDown, ChevronLeft, ChevronRight, LucideIcon, MoreHorizontal, Plus, Trash } from "lucide-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { act } from "react-dom/test-utils";
 import { toast } from "sonner";
 
@@ -28,7 +28,7 @@ interface ItemProps {
 
 export const Item = ({id, label, onClick, icon:Icon, active, documentIcon, isSearch, level=0, onExpand, expanded}: ItemProps) => {
 
-    // const router = useRouter();
+    const router = useRouter();
     const { user } = useUser();
     const create = useMutation(api.documents.create);
     const archive = useMutation(api.documents.archive);
@@ -36,7 +36,7 @@ export const Item = ({id, label, onClick, icon:Icon, active, documentIcon, isSea
     const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.stopPropagation();
         if (!id) return;
-        const promise = archive({ id })
+        const promise = archive({ id }).then(() => router.push("/documents"))
     
         toast.promise(promise, {
           loading: "Moving to trash...",
@@ -59,7 +59,7 @@ export const Item = ({id, label, onClick, icon:Icon, active, documentIcon, isSea
             if (!expanded) {
                 onExpand?.();
             }
-            // router.push(`/documents/${documentId}`);
+            router.push(`/documents/${documentId}`);
             });
     
         toast.promise(promise, {
