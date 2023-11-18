@@ -13,7 +13,7 @@ Built using Next JS providing dynamic database and intuitive file management mak
 - Tailwindcss
 - Convex Database
 
-- ## Previews
+## Previews
 
 <img width="1470" alt="notion-landing-page" src="https://github.com/madhurpant10/Notion-Website-Fullstack/assets/104094398/0c782330-ef0a-48eb-842e-21d47b784c49">
 
